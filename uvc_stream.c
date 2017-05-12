@@ -151,7 +151,7 @@ static void *cam_thread( void *arg ) {
 
       b->size = compress_yuyv_to_jpeg(cd.videoIn, b->buff, cd.videoIn->framesizeIn, cd.quality);
     }
-    else {
+   else {
       b->size = cd.videoIn->framesizeIn;
       memcpy(b->buff, cd.videoIn->tmpbuffer, cd.videoIn->framesizeIn);
     }
@@ -310,7 +310,7 @@ int main(int argc, char *argv[])
       case 13:
         cd.daemon = 1;
         break;
-      default:
+     default:
         help(argv[0]);
         return 0;
     }
@@ -362,7 +362,6 @@ int main(int argc, char *argv[])
   /*start http streamer */
     server.ptbuff = &tbuff;
     http_listener(&server);
-
   return 0;
 }
 

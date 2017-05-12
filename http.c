@@ -91,7 +91,7 @@ static int http_header_readline(int fd, char *buf, int len)
 		continue;
 	}
        break;
-    case 0:
+   case 0:
       *ptr = '\0';
       return ptr - buf;
     default:
@@ -149,6 +149,7 @@ static void http_header_free(struct http_header *header)
     free(header->uri);
   }
 }
+
 /* thread for clients that connected to this server */
 static void *http_client_thread( void *arg )
 {
@@ -180,11 +181,11 @@ static void *http_client_thread( void *arg )
     break;
     default:
       snprintf(buffer, sizeof(buffer),"The requested URL %s was not found on this server\n", header.uri);
-      should_close_connection = 1;
+     should_close_connection = 1;
     break;
   }
 
-  if (should_close_connection) {
+ if (should_close_connection) {
     close(ca->socket);
     http_header_free(&header);
     free(arg);
@@ -216,8 +217,7 @@ static void *http_client_thread( void *arg )
     }
 
     ok = print_picture(ca->socket, b->buff, b->size);
-
-    pthread_mutex_unlock( &(tbuff)->lock );
+   pthread_mutex_unlock( &(tbuff)->lock );
 
     if(ca->request_type != STREAM) {
       break;
@@ -229,7 +229,6 @@ static void *http_client_thread( void *arg )
   free(arg);
   return NULL;
 }
-
 
 int http_listener(struct http_server *srv)
 {
@@ -255,7 +254,7 @@ int http_listener(struct http_server *srv)
     exit(-1);
   }
 */
-  /* configure server address to listen to all local IPs */
+ /* configure server address to listen to all local IPs */
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
   addr.sin_port = srv->port;

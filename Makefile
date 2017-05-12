@@ -19,7 +19,6 @@ endif
 
 APP_BINARY=uvc_stream
 OBJECTS=uvc_stream.o v4l2uvc.o jpeg_utils.o cqueue.o http.o
-
 all: uga_buga
 
 clean:
